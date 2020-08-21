@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSeriesDataApi", "TimeSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeseriesDataUnitTest", "TimeseriesDataUnitTest\TimeseriesDataUnitTest.csproj", "{D507FB3E-BAFA-4F6D-AA36-AC8133945FE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeseriesDatabase", "TimeseriesDatabase\TimeseriesDatabase.csproj", "{7D14A60A-D1A4-4A94-A53D-47EB23AA4DC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDataConsoleApp", "SampleDataConsoleApp\SampleDataConsoleApp.csproj", "{45910185-330A-41BE-AF8A-8875508582CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{D507FB3E-BAFA-4F6D-AA36-AC8133945FE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D507FB3E-BAFA-4F6D-AA36-AC8133945FE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D507FB3E-BAFA-4F6D-AA36-AC8133945FE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D14A60A-D1A4-4A94-A53D-47EB23AA4DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D14A60A-D1A4-4A94-A53D-47EB23AA4DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D14A60A-D1A4-4A94-A53D-47EB23AA4DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D14A60A-D1A4-4A94-A53D-47EB23AA4DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45910185-330A-41BE-AF8A-8875508582CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45910185-330A-41BE-AF8A-8875508582CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45910185-330A-41BE-AF8A-8875508582CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45910185-330A-41BE-AF8A-8875508582CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
