@@ -1,0 +1,152 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "TimeseriesDataWebApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:module": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "projects/TimeseriesDataWebApp",
+      "sourceRoot": "projects/TimeseriesDataWebApp/src",
+      "prefix": "timeseries",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/TimeseriesDataWebApp",
+            "index": "projects/TimeseriesDataWebApp/src/index.html",
+            "main": "projects/TimeseriesDataWebApp/src/main.ts",
+            "polyfills": "projects/TimeseriesDataWebApp/src/polyfills.ts",
+            "tsConfig": "projects/TimeseriesDataWebApp/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/TimeseriesDataWebApp/src/favicon.ico",
+              "projects/TimeseriesDataWebApp/src/assets"
+            ],
+            "styles": [
+              "projects/TimeseriesDataWebApp/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/TimeseriesDataWebApp/src/environments/environment.ts",
+                  "with": "projects/TimeseriesDataWebApp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "TimeseriesDataWebApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "TimeseriesDataWebApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "TimeseriesDataWebApp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/TimeseriesDataWebApp/src/test.ts",
+            "polyfills": "projects/TimeseriesDataWebApp/src/polyfills.ts",
+            "tsConfig": "projects/TimeseriesDataWebApp/tsconfig.spec.json",
+            "karmaConfig": "projects/TimeseriesDataWebApp/karma.conf.js",
+            "assets": [
+              "projects/TimeseriesDataWebApp/src/favicon.ico",
+              "projects/TimeseriesDataWebApp/src/assets"
+            ],
+            "styles": [
+              "projects/TimeseriesDataWebApp/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/TimeseriesDataWebApp/tsconfig.app.json",
+              "projects/TimeseriesDataWebApp/tsconfig.spec.json",
+              "projects/TimeseriesDataWebApp/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/TimeseriesDataWebApp/e2e/protractor.conf.js",
+            "devServerTarget": "TimeseriesDataWebApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "TimeseriesDataWebApp:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": false
+  },
+  "defaultProject": "TimeseriesDataWebApp"
+}
