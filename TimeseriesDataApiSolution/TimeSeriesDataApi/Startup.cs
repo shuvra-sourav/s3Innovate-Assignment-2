@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TimeSeriesDataApi.Service;
+using TimeseriesDatabase;
 
 namespace TimeSeriesDataApi
 {
@@ -27,6 +28,9 @@ namespace TimeSeriesDataApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<TimeSeriesDbContext>();
+            services.AddScoped<ITimeSeriesService, TimeSeriesService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +40,8 @@ namespace TimeSeriesDataApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors( options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader() );
 
             app.UseHttpsRedirection();
 
