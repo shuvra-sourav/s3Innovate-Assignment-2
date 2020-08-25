@@ -1,2 +1,85 @@
-<p>Timeseries data app</p>
+<mat-form-field appearance="fill" class="spacing">
+  <mat-label>Select Building</mat-label>
+  <mat-select [(value)]="selectedBuildingId">
+    <mat-option *ngFor="let building of buildingViewdata" [value]="building.value">
+      {{building.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<mat-form-field appearance="fill" class="spacing">
+  <mat-label>Select Object</mat-label>
+  <mat-select [(value)]="selectedObjectId">
+    <mat-option *ngFor="let objectdata of objectViewdata" [value]="objectdata.value">
+      {{objectdata.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="spacing">
+  <mat-label>Select DataField</mat-label>
+  <mat-select [(value)]="selectedDatafieldId">
+    <mat-option *ngFor="let dataField of dataFieldViewdata" [value]="dataField.value">
+      {{dataField.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="spacing">
+
+  <input matInput [ngxMatDatetimePicker]="picker"
+         [(ngModel)]="selectedStartDate"
+         placeholder="Choose start date"
+         [formControl]="dateControl"
+         [min]="startDate" [max]="endDate"
+         [disabled]="disabled">
+  <mat-datepicker-toggle matSuffix [for]="picker">
+  </mat-datepicker-toggle>
+  <ngx-mat-datetime-picker #picker
+                           [showSpinners]="showSpinners"
+                           [showSeconds]="showSeconds"
+                           [stepHour]="stepHour" [stepMinute]="stepMinute"
+                           [stepSecond]="stepSecond"
+                           [touchUi]="touchUi"
+                           [color]="color">
+  </ngx-mat-datetime-picker>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="spacing">
+  <input matInput [ngxMatDatetimePicker]="pickerEndDate"
+         [(ngModel)]="selectedEndDate"
+         placeholder="Choose end date"
+         [formControl]="dateControlEndDate"
+         [min]="startDate" [max]="endDate"
+         [disabled]="disabled">
+  <mat-datepicker-toggle matSuffix [for]="pickerEndDate">
+  </mat-datepicker-toggle>
+  <ngx-mat-datetime-picker #pickerEndDate
+                           [showSpinners]="showSpinners"
+                           [showSeconds]="showSeconds"
+                           [stepHour]="stepHour" [stepMinute]="stepMinute"
+                           [stepSecond]="stepSecond"
+                           [touchUi]="touchUi"
+                           [color]="color">
+  </ngx-mat-datetime-picker>
+</mat-form-field>
+<button mat-stroked-button matTooltip="Click to Get data" class="spacing" (click)="getTimeseriesData()">Search</button>
+<div style="width: auto;">
+  <ngx-charts-line-chart
+    [view]="view"
+    [scheme]="colorScheme"
+    [legend]="legend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxis]="xAxis"
+    [yAxis]="yAxis"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [timeline]="timeline"
+    [results]="lineChartData"
+  >
+  </ngx-charts-line-chart>
+</div>
+
 <router-outlet></router-outlet>
