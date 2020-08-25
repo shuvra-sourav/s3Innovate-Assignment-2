@@ -95,7 +95,7 @@ namespace SampleDataConsoleApp
         private List<Reading> getReading(DateTime startDate, DateTime endDate,short buildingId, byte ObjectEntityId, byte DataFieldEntityId)
         {
             var list = new List<Reading>();
-            for (DateTime currentTimestamp = startDate; currentTimestamp <= endDate; currentTimestamp = currentTimestamp.AddSeconds(6))
+            for (DateTime currentTimestamp = startDate; currentTimestamp < endDate; currentTimestamp = currentTimestamp.AddSeconds(6))
             {
                 var item = generateReading();
                 item.BuildingEntityId = buildingId;

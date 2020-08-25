@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TimeSeriesDataApi.Dto;
 using TimeSeriesDataApi.Service;
+using TimeseriesDatabase.Model;
 
 namespace TimeSeriesDataApi.Controllers
 {
@@ -16,10 +18,13 @@ namespace TimeSeriesDataApi.Controllers
         {
             _timeSeriesService = timeSeriesService;
         }
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> GetTimeSeriesData([FromBody]TimeseriesDataRequestDto requestDto)
         {
-            var readingData = await _timeSeriesService.GetReading(requestDto.StartDate,requestDto.EndDate,requestDto.BuildingId,requestDto.BuildingObjectId,requestDto.DataFieldId);
+            DateTime startDate = DateTime.ParseExact(requestDto.StartDate, "M/d/yyyy, h:mm:ss tt", CultureInfo.InvariantCulture);
+            DateTime endDate = DateTime.ParseExact(requestDto.EndDate, "M/d/yyyy, h:mm:ss tt", CultureInfo.InvariantCulture);
+            var readingData = await _timeSeriesService.GetReading(startDate,endDate,requestDto.BuildingId,requestDto.BuildingObjectId,requestDto.DataFieldId);
+            
             if (readingData == null)
             {
                 return new NotFoundResult();
@@ -28,5 +33,21 @@ namespace TimeSeriesDataApi.Controllers
             return new OkObjectResult(readingData);
         }
         
+        [HttpGet]
+        public async Task<IActionResult> GetStartAndEndDate()
+        {
+            var dateLimit = await _timeSeriesService.GetDateLimits();
+            if (dateLimit.startDate == null && dateLimit.endDate == null)
+            {
+                return new NotFoundResult();
+            }
+            var dateData = new DateLimitResponseDto()
+            {
+                StartDate = dateLimit.startDate==null?dateLimit.endDate.AddYears(-2):dateLimit.startDate,
+                EndDate = dateLimit.endDate==null?dateLimit.startDate.AddYears(2):dateLimit.endDate
+            };
+
+            return new OkObjectResult(dateData);
+        }
     }
 }

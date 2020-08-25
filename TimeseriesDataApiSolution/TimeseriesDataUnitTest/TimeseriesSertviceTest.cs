@@ -25,6 +25,13 @@ namespace TimeseriesDataUnitTest
         }
         
         [TestMethod]
+        public async Task GetDateLimitTest()
+        {
+            var values = await _timeSeriesService.GetDateLimits();
+            Assert.IsNotNull(values);
+        }
+        
+        [TestMethod]
         public async Task GetBuildingTest()
         {
             var values = await _timeSeriesService.GetBuilding();

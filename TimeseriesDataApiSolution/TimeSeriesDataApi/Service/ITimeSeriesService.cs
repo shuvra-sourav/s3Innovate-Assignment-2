@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TimeSeriesDataApi.Dto;
 using TimeseriesDatabase.Model;
 
 namespace TimeSeriesDataApi.Service
@@ -10,9 +11,9 @@ namespace TimeSeriesDataApi.Service
         Task<List<BuildingDataField>> GetDataField();
         Task<List<BuildingObject>> GetObject();
         Task<List<Building>> GetBuilding();
+        Task<(DateTime startDate,DateTime endDate)> GetDateLimits();
         
-        Task<List<Reading>> GetReading(DateTime startDate, DateTime endDate, int buildingId, int objectId,
-            int dataFieldId);
-        
+
+        Task<List<TimeseriesDataResponseDto>> GetReading(DateTime startDate, DateTime endDate, int buildingId, int objectId, int dataFieldId);
     }
 }

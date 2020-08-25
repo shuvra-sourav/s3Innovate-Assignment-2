@@ -7,7 +7,7 @@ namespace TimeSeriesDataApi.Dto
         public int BuildingId { get; set; }
         public int BuildingObjectId { get; set; }
         public int DataFieldId { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
     }
 }
