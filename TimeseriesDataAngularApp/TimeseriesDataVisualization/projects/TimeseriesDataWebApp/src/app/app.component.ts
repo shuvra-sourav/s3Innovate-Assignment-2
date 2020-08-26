@@ -9,11 +9,6 @@ class MatSelectViewData {
   viewValue: string;
 }
 
-class TimeseriesViewdata {
-  name: string;
-  value: number;
-}
-
 class BuildingViewdata extends MatSelectViewData {
 }
 
@@ -33,9 +28,8 @@ export class AppComponent implements OnInit {
   buildingViewdata: BuildingViewdata[] = [];
   objectViewdata: ObjectViewdata[] = [];
   dataFieldViewdata: DatafieldViewdata[] = [];
-  startDate: Date; // new Date(2018, 1, 1, 12, 0, 0);
-  endDate: Date; // new Date(2020, 1, 1, 12, 0, 0);
-
+  startDate: Date;
+  endDate: Date;
   @ViewChild('picker') picker: any;
   @ViewChild('pickerEndDate') pickerEndDate: any;
 
@@ -53,8 +47,8 @@ export class AppComponent implements OnInit {
   yAxis = true;
   showYAxisLabel = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Value';
-  yAxisLabel = 'Timestamp';
+  xAxisLabel = 'Timestamp';
+  yAxisLabel = 'Value';
   timeline = true;
   lineChartData: any[];
   colorScheme = {
@@ -71,23 +65,9 @@ export class AppComponent implements OnInit {
   public stepMinute = 1;
   public stepSecond = 1;
   public color: ThemePalette = 'primary';
-
-  public formGroup = new FormGroup({
-    date: new FormControl(null, [Validators.required]),
-    date2: new FormControl(null, [Validators.required])
-  });
   public dateControl = new FormControl(new Date(2018, 1, 1, 12, 0, 0));
   public dateControlEndDate = new FormControl(new Date(2018, 1, 1, 12, 0, 0));
   public dateControlMinMax = new FormControl(new Date());
-  public dateControlMinMaxEndDate = new FormControl(new Date());
-
-  public options = [
-    {value: true, label: 'True'},
-    {value: false, label: 'False'}
-  ];
-
-  public listColors = ['primary', 'accent', 'warn'];
-
   public stepHours = [1, 2, 3, 4, 5];
   public stepMinutes = [1, 5, 10, 15, 20, 25];
   public stepSeconds = [1, 5, 10, 15, 20, 25];
@@ -147,7 +127,8 @@ export class AppComponent implements OnInit {
     requestObject.BuildingObjectId = this.selectedObjectId;
     requestObject.DataFieldId = this.selectedDatafieldId;
 
-    if (requestObject.StartDate && requestObject.EndDate && requestObject.buildingId && requestObject.BuildingObjectId && requestObject.DataFieldId) {
+    if (requestObject.StartDate && requestObject.EndDate && requestObject.buildingId &&
+      requestObject.BuildingObjectId && requestObject.DataFieldId) {
       this.timeseriesService.getTimeseriesData(requestObject).subscribe(value => {
         const viewData = [];
         console.log(value);
@@ -164,9 +145,4 @@ export class AppComponent implements OnInit {
     }
 
   }
-
-  closePicker() {
-    this.picker.cancel();
-  }
-
 }
