@@ -135,7 +135,7 @@ namespace SampleDataConsoleApp
             int mIndex = rnd.Next(locations.Length);
             return new Building()
             {
-                Location = locations[mIndex],
+                Location = locations[mIndex]==null ? locations[mIndex]: string.Empty,
                 Name = generateString(rnd.Next(10,45))
             };
         }
